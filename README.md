@@ -5,7 +5,7 @@
 
 启动设置“区别元素物品列表”接受物品内部 name 的 JSON 数组，例如
 `["iron-gear-wheel","copper-plate"]`。每个元素都会生成 7 个继承源物品属性的等级，
-例如 `b_market_iron_gear_wheel_1` 至 `b_market_iron_gear_wheel_7`。七级依次使用
+例如 `b-market-iron-gear-wheel-1` 至 `b-market-iron-gear-wheel-7`。七级依次使用
 `b_market_1.png` 至 `b_market_7.png` 作为底图，并在右上角叠加经过赤、橙、黄、
 绿、青、蓝、紫浅色染色的区别元素。
 
@@ -20,12 +20,12 @@
 ## 安装
 
 将发布 ZIP 放入 Factorio 的 `mods` 目录，或直接将本目录作为
-`placeholder_item` 放入 `mods` 目录。
+`placeholder-item` 放入 `mods` 目录。
 
 ## 测试命令
 
 进入地图后可在控制台输入：
 
 ```text
-/c game.player.insert{name="b_market_iron_gear_wheel_1", count=1}
+/c game.player.insert{name="b-market-iron-gear-wheel-1", count=1}
 ```

@@ -3,7 +3,7 @@ data:extend({
     {
         type = "item-group",
         name = "supermarket-items",
-        icon = "__placeholder_item__/graphics/item-groups/supermarket-items.png",
+        icon = "__placeholder-item__/graphics/item-groups/supermarket-items.png",
         icon_size = 128,
         order = "zzz[supermarket-items]"
     }

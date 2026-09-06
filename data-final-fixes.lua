@@ -20,7 +20,7 @@ local json_ok, configured_items = pcall(function()
 end)
 
 if not json_ok or type(configured_items) ~= "table" then
-    log("[placeholder_item] 区别元素配置不是有效的 JSON 字符串数组，已跳过全部配置项。示例: [\"iron-gear-wheel\"]")
+    log("[placeholder-item] 区别元素配置不是有效的 JSON 字符串数组，已跳过全部配置项。示例: [\"iron-gear-wheel\"]")
     configured_items = {}
 end
 
@@ -52,7 +52,7 @@ local function make_composite_icons(source, level)
     local icons = {
         {
             -- 每一级使用同色的超市底图，例如赤色等级使用 b_market_1.png。
-            icon = "__placeholder_item__/graphics/icons/b_market_" .. level .. ".png",
+            icon = "__placeholder-item__/graphics/icons/b_market_" .. level .. ".png",
             icon_size = 64
         }
     }
@@ -82,34 +82,35 @@ local generated_names = {}
 
 local function generate_tiers(config_index, source_name)
     if type(source_name) ~= "string" or source_name == "" then
-        log("[placeholder_item] 已跳过配置列表第 " .. config_index .. " 项：必须是非空物品 name 字符串")
+        log("[placeholder-item] 已跳过配置列表第 " .. config_index .. " 项：必须是非空物品 name 字符串")
         return
     end
 
     local source = find_item_prototype(source_name)
     if not source then
-        log("[placeholder_item] 已跳过不存在的物品 prototype: " .. source_name)
+        log("[placeholder-item] 已跳过不存在的物品 prototype: " .. source_name)
         return
     end
     if not source.icon and not source.icons then
-        log("[placeholder_item] 已跳过没有 icon/icons 素材的物品 prototype: " .. source_name)
+        log("[placeholder-item] 已跳过没有 icon/icons 素材的物品 prototype: " .. source_name)
         return
     end
 
-    local safe_source_name = source_name:gsub("[^%w_]", "_")
-    local subgroup_name = "b_market_subgroup_" .. safe_source_name
+    -- Factorio 原型名统一使用连字符；同时规范化其他模组可能提供的下划线或特殊字符。
+    local safe_source_name = source_name:gsub("[^%a%d%-]", "-")
+    local subgroup_name = "b-market-subgroup-" .. safe_source_name
 
     if generated_names[safe_source_name] then
-        log("[placeholder_item] 已跳过重复或规范化后名称冲突的配置项: " .. source_name)
+        log("[placeholder-item] 已跳过重复或规范化后名称冲突的配置项: " .. source_name)
         return
     end
     generated_names[safe_source_name] = true
 
     -- 避免与其他模组或旧版本遗留的同名物品、配方发生 prototype 冲突。
     for level = 1, 7 do
-        local candidate_name = "b_market_" .. safe_source_name .. "_" .. level
+        local candidate_name = "b-market-" .. safe_source_name .. "-" .. level
         if find_item_prototype(candidate_name) or (data.raw.recipe and data.raw.recipe[candidate_name]) then
-            log("[placeholder_item] 已跳过名称冲突的区别元素系列: " .. source_name .. " -> " .. candidate_name)
+            log("[placeholder-item] 已跳过名称冲突的区别元素系列: " .. source_name .. " -> " .. candidate_name)
             return
         end
     end
@@ -127,8 +128,8 @@ local function generate_tiers(config_index, source_name)
     }
 
     for level = 1, 7 do
-        local generated_name = "b_market_" .. safe_source_name .. "_" .. level
-        local previous_name = "b_market_" .. safe_source_name .. "_" .. (level - 1)
+        local generated_name = "b-market-" .. safe_source_name .. "-" .. level
+        local previous_name = "b-market-" .. safe_source_name .. "-" .. (level - 1)
         local ingredient_name = level == 1 and source_name or previous_name
         local icons = make_composite_icons(source, level)
         local source_localised_name = source.localised_name or { "item-name." .. source_name }
