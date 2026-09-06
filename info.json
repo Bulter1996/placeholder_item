@@ -1,6 +1,6 @@
 {
   "name": "placeholder-item",
-  "version": "1.7.1",
+  "version": "1.7.2",
   "title": "Market Assembling Item",
   "author": "Bulter",
   "description": "Builds seven color-tiered market variants for every item in a configurable JSON list.",
