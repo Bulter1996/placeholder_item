@@ -1,0 +1,11 @@
+{
+  "name": "placeholder_item",
+  "version": "1.7.1",
+  "title": "Market Assembling Item",
+  "author": "Bulter",
+  "description": "Builds seven color-tiered market variants for every item in a configurable JSON list.",
+  "factorio_version": "2.1",
+  "dependencies": [
+    "base >= 2.1.0"
+  ]
+}

@@ -1,0 +1,28 @@
+# 操作系统与编辑器生成的本地文件
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+/AGENTS.md
+*.swp
+*.swo
+*~
+
+# Python 工具缓存与虚拟环境
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# 美术源文件、中间产物和资源生成工具（不参与模组运行）
+/assets/
+/tools/
+
+# 构建、发布产物
+/dist/
+/*.zip
+
+# 本地日志和临时文件
+*.log
+*.tmp
+*.bak
