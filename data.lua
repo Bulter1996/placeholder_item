@@ -8,3 +8,6 @@ data:extend({
         order = "zzz[supermarket-items]"
     }
 })
+
+-- 专用泵必须在 data 阶段注册，确保原版 Recycler 能在 data-updates 阶段生成默认回收配方。
+require("prototypes.tiered-pumps").extend()

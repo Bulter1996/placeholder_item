@@ -2,16 +2,10 @@ local item_prototypes = {}
 local recipe_prototypes = {}
 local subgroup_prototypes = {}
 
--- 七级依次对应赤、橙、黄、绿、青、蓝、紫；颜色取较浅值以保留源图标细节。
-local tier_tints = {
-    { r = 1.00, g = 0.55, b = 0.55, a = 0.85 },
-    { r = 1.00, g = 0.72, b = 0.50, a = 0.85 },
-    { r = 1.00, g = 1.00, b = 0.55, a = 0.85 },
-    { r = 0.55, g = 1.00, b = 0.55, a = 0.85 },
-    { r = 0.55, g = 1.00, b = 1.00, a = 0.85 },
-    { r = 0.55, g = 0.65, b = 1.00, a = 0.85 },
-    { r = 0.82, g = 0.55, b = 1.00, a = 0.85 }
-}
+local tier_tints = require("prototypes.tier-tints")
+
+-- 等所有模组完成数据修改后再接入原版泵，避免覆盖其他模组已有的升级路线。
+require("prototypes.tiered-pumps").finalize()
 
 local configured_json = settings.startup["b-market-distinguishing-items"].value
 -- Factorio 的 LuaObject 方法不能安全地脱离对象直接传给 pcall，必须包一层函数调用。
