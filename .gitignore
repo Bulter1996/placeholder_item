@@ -4,6 +4,7 @@ Thumbs.db
 .vscode/
 .idea/
 /AGENTS.md
+/Requirement.md
 *.swp
 *.swo
 *~
@@ -26,3 +27,6 @@ venv/
 *.log
 *.tmp
 *.bak
+
+# 打包脚本
+package.sh
